@@ -30,7 +30,7 @@ public class User {
 
     public User() {}
 
-    public User(long id, String first_name, String last_name, String username, String password, String email, List<Link> links) {
+    public User(long id, String first_name, String last_name, String username, String password, String email, List<Link> link) {
         this.id = id;
         this.first_name = first_name;
         this.last_name = last_name;
