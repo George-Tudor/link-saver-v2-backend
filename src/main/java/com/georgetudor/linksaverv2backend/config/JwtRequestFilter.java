@@ -7,7 +7,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.georgetudor.linksaverv2backend.config.JwtTokenUtil;
 import com.georgetudor.linksaverv2backend.services.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,8 +15,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-
 import io.jsonwebtoken.ExpiredJwtException;
 
 @Component
@@ -72,4 +69,3 @@ public class JwtRequestFilter extends OncePerRequestFilter {
     }
 
 }
-
