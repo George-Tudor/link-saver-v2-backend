@@ -1,6 +1,6 @@
 package com.georgetudor.linksaverv2backend.services;
 
-import com.georgetudor.linksaverv2backend.models.UserDao;
+import com.georgetudor.linksaverv2backend.models.User;
 import com.georgetudor.linksaverv2backend.models.UserDto;
 import com.georgetudor.linksaverv2backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class JwtUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserDao user = userDao.findByUsername(username);
+		User user = userDao.findByUsername(username);
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found with username: " + username);
 		}
@@ -30,8 +30,8 @@ public class JwtUserDetailsService implements UserDetailsService {
 				new ArrayList<>());
 	}
 
-	public UserDao save(UserDto user) {
-		UserDao newUser = new UserDao();
+	public User save(UserDto user) {
+		User newUser = new User();
 		newUser.setUsername(user.getUsername());
 		newUser.setPassword(bcryptEncoder.encode(user.getPassword()));
 		return userDao.save(newUser);

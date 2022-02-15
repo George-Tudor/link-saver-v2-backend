@@ -1,55 +1,45 @@
 package com.georgetudor.linksaverv2backend.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "links")
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private int id;
 
     @Column(length = 1000)
     private String title;
 
-//    @Column(columnDefinition = "TEXT")
-//    private String description;
-
-//    @Column(length = 2083)
-//    private String image;
-
     @Column(length = 2083)
     private String url;
 
-//    @Column(columnDefinition = "TEXT")
-//    private String notes;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
-//    @ManyToOne
-//    @JoinColumn(name = "link_id" )
-//    private WasUser user;
-//
-//    @ManyToMany
-//    @JoinTable(
-//            name = "link_tag",
-//            joinColumns = {@JoinColumn(name = "link_id")},
-//            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
-//    )
-//    private List<Tag> tags;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Link() {}
 
-    public Link(long id, String title, String url) {
+    public Link(int id, String title, String url) {
         this.id = id;
         this.title = title;
         this.url = url;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -77,13 +67,13 @@ public class Link {
 //        this.image = image;
 //    }
 //
-//    public String getUrl() {
-//        return url;
-//    }
-//
-//    public void setUrl(String url) {
-//        this.url = url;
-//    }
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
 //    public WasUser getUser() {
 //        return user;
