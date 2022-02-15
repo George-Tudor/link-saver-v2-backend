@@ -1,30 +1,30 @@
-//package com.georgetudor.linksaverv2backend.models;
-//
-//import javax.persistence.*;
-//import java.util.List;
-//
-//@Entity
-//@Table(name = "links")
-//public class Link {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private long id;
-//
-//    @Column(length = 1000)
-//    private String title;
-//
+package com.georgetudor.linksaverv2backend.models;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "links")
+public class Link {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+    @Column(length = 1000)
+    private String title;
+
 //    @Column(columnDefinition = "TEXT")
 //    private String description;
-//
+
 //    @Column(length = 2083)
 //    private String image;
-//
-//    @Column(length = 2083)
-//    private String url;
-//
+
+    @Column(length = 2083)
+    private String url;
+
 //    @Column(columnDefinition = "TEXT")
 //    private String notes;
-//
+
 //    @ManyToOne
 //    @JoinColumn(name = "link_id" )
 //    private WasUser user;
@@ -36,25 +36,31 @@
 //            inverseJoinColumns = {@JoinColumn(name = "tag_id")}
 //    )
 //    private List<Tag> tags;
-//
-//    public Link() {}
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public String getTitle() {
-//        return title;
-//    }
-//
-//    public void setTitle(String title) {
-//        this.title = title;
-//    }
-//
+
+    public Link() {}
+
+    public Link(long id, String title, String url) {
+        this.id = id;
+        this.title = title;
+        this.url = url;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 //    public String getDescription() {
 //        return description;
 //    }
@@ -78,7 +84,7 @@
 //    public void setUrl(String url) {
 //        this.url = url;
 //    }
-//
+
 //    public WasUser getUser() {
 //        return user;
 //    }
@@ -102,4 +108,4 @@
 //    public void setTags(List<Tag> tags) {
 //        this.tags = tags;
 //    }
-//}
+}

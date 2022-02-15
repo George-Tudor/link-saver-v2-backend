@@ -1,16 +1,22 @@
 package com.georgetudor.linksaverv2backend.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.georgetudor.linksaverv2backend.models.Link;
+import com.georgetudor.linksaverv2backend.repository.LinkRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LinkController {
 
-    @PostMapping("/add-link")
-    public String addLink() {
+    @Autowired
+    private LinkRepository linkRepository;
 
-        return "add-link";
+    @RequestMapping(value = "/add-link", method = RequestMethod.POST)
+    public void addLink() {
+        public ResponseEntity<?> saveLink(@RequestBody Link link) throws Exception {
+            return ResponseEntity.ok(linkRepository.save(link));
+        }
     }
 
     @GetMapping("/list-links")
