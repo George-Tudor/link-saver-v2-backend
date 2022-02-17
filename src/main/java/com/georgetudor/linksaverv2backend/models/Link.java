@@ -9,15 +9,21 @@ public class Link {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Column(length = 1000)
     private String title;
 
     @Column(length = 2083)
     private String url;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(length = 2083)
+    private String description;
+
+    @Column(length = 2083)
+    private String imageUrl;
 
     public User getUser() {
         return user;
@@ -33,6 +39,23 @@ public class Link {
         this.id = id;
         this.title = title;
         this.url = url;
+    }
+
+    public Link(int id, User user, String title, String url, String description, String imageUrl) {
+        this.id = id;
+        this.user = user;
+        this.title = title;
+        this.url = url;
+        this.description = description;
+        this.imageUrl = imageUrl;
+    }
+
+    public Link(int id, String title, String url, String description, String imageUrl) {
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.description = description;
+        this.imageUrl = imageUrl;
     }
 
     public int getId() {
@@ -51,22 +74,7 @@ public class Link {
         this.title = title;
     }
 
-//    public String getDescription() {
-//        return description;
-//    }
-//
-//    public void setDescription(String description) {
-//        this.description = description;
-//    }
-//
-//    public String getImage() {
-//        return image;
-//    }
-//
-//    public void setImage(String image) {
-//        this.image = image;
-//    }
-//
+
     public String getUrl() {
         return url;
     }
@@ -75,27 +83,19 @@ public class Link {
         this.url = url;
     }
 
-//    public WasUser getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(WasUser user) {
-//        this.user = user;
-//    }
-//
-//    public String getNotes() {
-//        return notes;
-//    }
-//
-//    public void setNotes(String notes) {
-//        this.notes = notes;
-//    }
-//
-//    public List<Tag> getTags() {
-//        return tags;
-//    }
-//
-//    public void setTags(List<Tag> tags) {
-//        this.tags = tags;
-//    }
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }
