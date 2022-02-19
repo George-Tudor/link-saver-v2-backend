@@ -40,6 +40,8 @@ public class LinkController {
         link.setImageUrl(image.getValue());
         OpenGraph.Content description = openGraph.getContentOf("description");
         link.setDescription(description.getValue());
+        OpenGraph.Content title = openGraph.getContentOf("title");
+        link.setTitle(title.getValue());
         linkRepository.save(link);
     }
 
