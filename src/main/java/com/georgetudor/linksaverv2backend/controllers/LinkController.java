@@ -3,7 +3,6 @@ package com.georgetudor.linksaverv2backend.controllers;
 import com.georgetudor.linksaverv2backend.models.Link;
 import com.georgetudor.linksaverv2backend.repository.LinkRepository;
 import com.georgetudor.linksaverv2backend.repository.UserRepository;
-import com.georgetudor.linksaverv2backend.services.LinkPreviewService;
 import com.github.siyoon210.ogparser4j.OgParser;
 import com.github.siyoon210.ogparser4j.OpenGraph;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,20 +19,10 @@ public class LinkController {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private LinkPreviewService linkPreviewService;
-
-
 
     @PostMapping(value = "/links")
     public void saveLink(@RequestBody Link link, Authentication authentication) {
         link.setUser(userRepository.findByUsername(authentication.getName()));
-//        LinkPreview linkPreview = linkPreviewService.getLinkInfo(link);
-//        link.setTitle(linkPreview.getTitle());
-//        link.setDescription(linkPreview.getDescription());
-//        link.setImageUrl(linkPreview.getImage());
-//        link.setUrl(linkPreview.getUrl());
-        System.out.println(link.getUrl());
         OgParser ogParser = new OgParser();
         OpenGraph openGraph = ogParser.getOpenGraphOf(link.getUrl());
         OpenGraph.Content image = openGraph.getContentOf("image");
