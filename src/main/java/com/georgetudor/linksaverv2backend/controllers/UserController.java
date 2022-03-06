@@ -1,16 +1,27 @@
 package com.georgetudor.linksaverv2backend.controllers;
 
-import org.springframework.security.core.Authentication;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
-@Controller
+@RestController
 public class UserController {
 
     @GetMapping("/me")
-    public String whoAmI(Authentication authentication) {
-        return authentication.getName();
+    public UserResponse whoAmI(String username) {
+        return new UserResponse(username);
+    }
+
+    private class UserResponse {
+        private String username;
+
+        public UserResponse(String name) {
+            this.username = name;
+        }
+
+        public String getUsername() {
+            return username;
+        }
     }
 }
