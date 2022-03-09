@@ -6,6 +6,7 @@ import com.georgetudor.linksaverv2backend.repository.UserRepository;
 import com.github.siyoon210.ogparser4j.OgParser;
 import com.github.siyoon210.ogparser4j.OpenGraph;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,8 +20,10 @@ public class LinkController {
     private UserRepository userRepository;
 
 
+
     @PostMapping(value = "/links")
-    public void saveLink(@RequestBody Link link, String username) {
+    public void saveLink(@RequestBody Link link) {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
         link.setUser(userRepository.findByUsername(username));
         OgParser ogParser = new OgParser();
         OpenGraph openGraph = ogParser.getOpenGraphOf(link.getUrl());
