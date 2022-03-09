@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -35,13 +35,13 @@ public class Link {
 
     public Link() {}
 
-    public Link(int id, String title, String url) {
+    public Link(long id, String title, String url) {
         this.id = id;
         this.title = title;
         this.url = url;
     }
 
-    public Link(int id, User user, String title, String url, String description, String imageUrl) {
+    public Link(long id, User user, String title, String url, String description, String imageUrl) {
         this.id = id;
         this.user = user;
         this.title = title;
@@ -50,7 +50,7 @@ public class Link {
         this.imageUrl = imageUrl;
     }
 
-    public Link(int id, String title, String url, String description, String imageUrl) {
+    public Link(long id, String title, String url, String description, String imageUrl) {
         this.id = id;
         this.title = title;
         this.url = url;
@@ -58,11 +58,11 @@ public class Link {
         this.imageUrl = imageUrl;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

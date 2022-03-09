@@ -5,6 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 
 
 
-public interface LinkRepository extends CrudRepository<Link, Integer> {
-    <Link> void findById(Integer id);
+public interface LinkRepository extends CrudRepository<Link, Long> {
+    <Link> void findById(Long id);
+    <Link> Iterable<com.georgetudor.linksaverv2backend.models.Link> findAllByUserId(Long id);
+
 }

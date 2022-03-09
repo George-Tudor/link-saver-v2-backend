@@ -1,6 +1,7 @@
 package com.georgetudor.linksaverv2backend.controllers;
 
 import com.georgetudor.linksaverv2backend.models.Link;
+import com.georgetudor.linksaverv2backend.models.User;
 import com.georgetudor.linksaverv2backend.repository.LinkRepository;
 import com.georgetudor.linksaverv2backend.repository.UserRepository;
 import com.github.siyoon210.ogparser4j.OgParser;
@@ -39,11 +40,14 @@ public class LinkController {
 
     @GetMapping("/links")
     public Iterable<Link> listLinks() {
-        return linkRepository.findAll();
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        User user = userRepository.findByUsername(username);
+        long userid = user.getId();
+        return linkRepository.findAllByUserId(userid);
     }
 
     @DeleteMapping("/links/{id}")
-    public void deleteLink(@PathVariable Integer id) {
+    public void deleteLink(@PathVariable Long id) {
         linkRepository.deleteById(id);
     }
 
