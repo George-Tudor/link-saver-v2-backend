@@ -25,6 +25,9 @@ public class Link {
     @Column(length = 2083)
     private String imageUrl;
 
+    @Column(length = 2083)
+    private String tags;
+
     public User getUser() {
         return user;
     }
