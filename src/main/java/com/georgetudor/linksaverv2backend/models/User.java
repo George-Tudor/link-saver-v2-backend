@@ -19,7 +19,7 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<Link> links;
+    private List<Link> link;
 
     public String getUsername() {
         return username;

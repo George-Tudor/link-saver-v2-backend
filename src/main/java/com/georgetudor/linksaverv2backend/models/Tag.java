@@ -10,7 +10,7 @@ public class Tag {
     private long id;
 
     @Column(length = 1000)
-    private String tag;
+    private String description;
 
     @ManyToMany
     @JoinTable(

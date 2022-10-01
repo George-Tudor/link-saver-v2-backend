@@ -1,9 +1,10 @@
 package com.georgetudor.linksaverv2backend.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "links")
+@Table(name = "link")
 public class Link {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,8 +26,12 @@ public class Link {
     @Column(length = 2083)
     private String imageUrl;
 
-    @Column(length = 2083)
-    private String tags;
+    @OneToMany
+    private List<Tag> tag;
+
+    public Link() {
+
+    }
 
     public User getUser() {
         return user;
@@ -36,29 +41,35 @@ public class Link {
         this.user = user;
     }
 
-    public Link() {}
+    public Link(List<Tag> tag) {
+        this.tag = tag;
+    }
 
-    public Link(long id, String title, String url) {
+
+    public Link(long id, String title, String url, List<Tag> tag) {
         this.id = id;
         this.title = title;
         this.url = url;
+        this.tag = tag;
     }
 
-    public Link(long id, User user, String title, String url, String description, String imageUrl) {
+    public Link(long id, User user, String title, String url, String description, String imageUrl, List<Tag> tag) {
         this.id = id;
         this.user = user;
         this.title = title;
         this.url = url;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.tag = tag;
     }
 
-    public Link(long id, String title, String url, String description, String imageUrl) {
+    public Link(long id, String title, String url, String description, String imageUrl, List<Tag> tag) {
         this.id = id;
         this.title = title;
         this.url = url;
         this.description = description;
         this.imageUrl = imageUrl;
+        this.tag = tag;
     }
 
     public long getId() {
