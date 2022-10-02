@@ -20,4 +20,36 @@ public class Tag {
     )
     private List<Link> link;
 
+    public Tag(long id, String description, List<Link> link) {
+        this.id = id;
+        this.description = description;
+        this.link = link;
+    }
+
+    public Tag() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Link> getLink() {
+        return link;
+    }
+
+    public void setLink(List<Link> link) {
+        this.link = link;
+    }
 }

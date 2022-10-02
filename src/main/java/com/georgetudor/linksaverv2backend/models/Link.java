@@ -26,12 +26,26 @@ public class Link {
     @Column(length = 2083)
     private String imageUrl;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name="link_tag",
+            joinColumns ={@JoinColumn(name="tag_id")},
+            inverseJoinColumns = {@JoinColumn(name="link_id")}
+    )
     private List<Tag> tag;
+
+    public List<Tag> getTag() {
+        return tag;
+    }
+
+    public void setTag(List<Tag> tag) {
+        this.tag = tag;
+    }
 
     public Link() {
 
     }
+
 
     public User getUser() {
         return user;
@@ -71,6 +85,8 @@ public class Link {
         this.imageUrl = imageUrl;
         this.tag = tag;
     }
+
+
 
     public long getId() {
         return id;
