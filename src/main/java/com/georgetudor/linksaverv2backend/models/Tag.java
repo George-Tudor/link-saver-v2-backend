@@ -1,7 +1,6 @@
 package com.georgetudor.linksaverv2backend.models;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Tag {
@@ -12,18 +11,10 @@ public class Tag {
     @Column(length = 1000)
     private String description;
 
-    @ManyToMany
-    @JoinTable(
-            name="link_tag",
-            joinColumns ={@JoinColumn(name="link_id")},
-            inverseJoinColumns = {@JoinColumn(name="tag_id")}
-    )
-    private List<Link> link;
 
-    public Tag(long id, String description, List<Link> link) {
+    public Tag(long id, String description) {
         this.id = id;
         this.description = description;
-        this.link = link;
     }
 
     public Tag() {
@@ -45,11 +36,4 @@ public class Tag {
         this.description = description;
     }
 
-    public List<Link> getLink() {
-        return link;
-    }
-
-    public void setLink(List<Link> link) {
-        this.link = link;
-    }
 }
