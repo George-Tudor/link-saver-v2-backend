@@ -29,17 +29,17 @@ public class Link {
     @ManyToMany
     @JoinTable(
             name="link_tag",
-            joinColumns ={@JoinColumn(name="tag_id")},
-            inverseJoinColumns = {@JoinColumn(name="link_id")}
+            joinColumns ={@JoinColumn(name="link_id")},
+            inverseJoinColumns = {@JoinColumn(name="tag_id")}
     )
-    private List<Tag> tag;
+    private List<Tag> tags;
 
-    public List<Tag> getTag() {
-        return tag;
+    public List<Tag> getTags() {
+        return tags;
     }
 
-    public void setTag(List<Tag> tag) {
-        this.tag = tag;
+    public void setTags(List<Tag> tag) {
+        this.tags = tag;
     }
 
     public Link() {
@@ -55,35 +55,35 @@ public class Link {
         this.user = user;
     }
 
-    public Link(List<Tag> tag) {
-        this.tag = tag;
+    public Link(List<Tag> tags) {
+        this.tags = tags;
     }
 
 
-    public Link(long id, String title, String url, List<Tag> tag) {
+    public Link(long id, String title, String url, List<Tag> tags) {
         this.id = id;
         this.title = title;
         this.url = url;
-        this.tag = tag;
+        this.tags = tags;
     }
 
-    public Link(long id, User user, String title, String url, String description, String imageUrl, List<Tag> tag) {
+    public Link(long id, User user, String title, String url, String description, String imageUrl, List<Tag> tags) {
         this.id = id;
         this.user = user;
         this.title = title;
         this.url = url;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.tag = tag;
+        this.tags = tags;
     }
 
-    public Link(long id, String title, String url, String description, String imageUrl, List<Tag> tag) {
+    public Link(long id, String title, String url, String description, String imageUrl, List<Tag> tags) {
         this.id = id;
         this.title = title;
         this.url = url;
         this.description = description;
         this.imageUrl = imageUrl;
-        this.tag = tag;
+        this.tags = tags;
     }
 
 
