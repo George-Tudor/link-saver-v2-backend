@@ -1,6 +1,7 @@
 package com.georgetudor.linksaverv2backend.models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Tag {
@@ -36,4 +37,16 @@ public class Tag {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return id == tag.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

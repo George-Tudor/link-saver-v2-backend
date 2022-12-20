@@ -1,6 +1,5 @@
 package com.georgetudor.linksaverv2backend.controllers;
 
-import com.georgetudor.linksaverv2backend.models.Tag;
 import com.georgetudor.linksaverv2backend.repository.LinkRepository;
 import com.georgetudor.linksaverv2backend.repository.TagRepository;
 import com.georgetudor.linksaverv2backend.repository.UserRepository;
@@ -28,8 +27,12 @@ public class TagController {
     @ResponseBody
     @RequestMapping(value = "/links/{linkId}/add-tag", method = RequestMethod.POST)
     public void addTag(@RequestBody String tag, @PathVariable long linkId) {
-        linkRepository.findById(linkId);
         tagService.addTag(tag, linkId);
+    }
+
+    @DeleteMapping("/links/{linkId}/delete-tag/{tagId}")
+    public void getTags(@PathVariable long linkId, @PathVariable long tagId) {
+        tagService.removeTagFromLink(linkId, tagId);
     }
 
 }
