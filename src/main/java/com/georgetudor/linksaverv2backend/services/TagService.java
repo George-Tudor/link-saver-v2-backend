@@ -43,6 +43,13 @@ public class TagService {
         linkRepository.save(link);
     }
 
+    public void removeTagFromLink(Long linkId, Long tagId) {
+        Link link = linkRepository.findById(linkId).orElseThrow(IllegalStateException::new);
+        Tag tag = tagRepository.findById(tagId).orElseThrow(IllegalStateException::new);
+        link.getTags().remove(tag);
+        linkRepository.save(link);
+    }
+
     private void addExistingTag(Tag tag, Link link) {
         Tag existingLinkTag = null;
         for (Tag t : link.getTags()) {
