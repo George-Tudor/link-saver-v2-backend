@@ -4,11 +4,13 @@ import com.georgetudor.linksaverv2backend.models.Link;
 import com.georgetudor.linksaverv2backend.models.User;
 import com.georgetudor.linksaverv2backend.repository.LinkRepository;
 import com.georgetudor.linksaverv2backend.repository.UserRepository;
-import com.github.siyoon210.ogparser4j.OgParser;
-import com.github.siyoon210.ogparser4j.OpenGraph;
+import com.georgetudor.linksaverv2backend.services.OpenGraphService;
+import com.georgetudor.linksaverv2backend.services.WebsiteMetadataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @RestController
 @CrossOrigin
@@ -23,17 +25,15 @@ public class LinkController {
 
 
     @PostMapping(value = "/links")
-    public void saveLink(@RequestBody Link link) {
+    public void saveLink(@RequestBody Link link) throws IOException {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
         link.setUser(userRepository.findByUsername(username));
-        OgParser ogParser = new OgParser();
-        OpenGraph openGraph = ogParser.getOpenGraphOf(link.getUrl());
-        OpenGraph.Content image = openGraph.getContentOf("image");
-        link.setImageUrl(image.getValue());
-        OpenGraph.Content description = openGraph.getContentOf("description");
-        link.setDescription(description.getValue());
-        OpenGraph.Content title = openGraph.getContentOf("title");
-        link.setTitle(title.getValue());
+        try {
+            OpenGraphService.getOpenGraphInfo(link);
+        } catch (Exception e) {
+            e.printStackTrace();
+            WebsiteMetadataService.getMetaData(link);
+        }
         linkRepository.save(link);
     }
 
